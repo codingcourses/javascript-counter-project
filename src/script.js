@@ -27,7 +27,16 @@ class Model {
  * Visual representation of the model.
  */
 class View {
-  constructor() {}
+  constructor() {
+    this.count = this.getElement('#count');
+    this.minus = this.getElement('#minus');
+    this.plus = this.getElement('#plus');
+  }
+
+  getElement(selector) {
+    const element = document.querySelector(selector);
+    return element;
+  }
 }
 
 /**
