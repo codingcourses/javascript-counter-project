@@ -37,6 +37,22 @@ class View {
     const element = document.querySelector(selector);
     return element;
   }
+
+  updateCount(count) {
+    this.count.value = count;
+  }
+
+  bindIncrement(handler) {
+    this.plus.addEventListener('click', handler);
+  }
+
+  bindDecrement(handler) {
+    this.minus.addEventListener('click', handler);
+  }
+
+  bindReset(handler) {
+    this.reset.addEventListener('click', handler);
+  }
 }
 
 /**
