@@ -4,7 +4,21 @@
  * Manages the data of the application.
  */
 class Model {
-  constructor() {}
+  constructor() {
+    this.count = 0;
+  }
+
+  increment() {
+    this.count++;
+  }
+
+  decrement() {
+    this.count--;
+  }
+
+  reset() {
+    this.count = 0;
+  }
 }
 
 /**
@@ -25,7 +39,10 @@ class View {
  * @param view
  */
 class Controller {
-  constructor(model, view) {}
+  constructor(model, view) {
+    this.model = model;
+    this.view = view;
+  }
 }
 
 const app = new Controller(new Model(), new View());
