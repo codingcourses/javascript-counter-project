@@ -5,7 +5,7 @@
  */
 class Model {
   constructor() {
-    this.count = 0;
+    this.count = Number(localStorage.getItem('count')) || 0;
   }
 
   increment() {
@@ -86,9 +86,13 @@ class Controller {
     this.view.bindIncrement(this.handleIncrement);
     this.view.bindDecrement(this.handleDecrement);
     this.view.bindReset(this.handleReset);
+
+    // Initial count
+    this.onCountChanged(this.model.count);
   }
 
   onCountChanged = count => {
+    localStorage.setItem('count', count);
     this.view.updateCount(count);
   }
 
