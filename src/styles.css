@@ -78,3 +78,72 @@ select {
 }
 
 /* CUSTOM STYLES */
+#root {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.operator {
+  display: inline-block;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  padding-bottom: 5rem;
+  background-color: #29B6F6;
+  color: white;
+  border: none;
+  font-weight: 100;
+  font-size: 3rem;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.operator:hover {
+  background-color: #03A9F4;
+}
+
+.operator:active {
+  background-color: #039BE5;
+}
+
+.count {
+  display: inline-block;
+  font-weight: 100;
+  font-size: 10rem;
+}
+
+.reset {
+  background-color: #EEEEEE;
+  color: black;
+  border: none;
+  font-weight: 100;
+  font-size: 1.5rem;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 0 1rem 0 1rem;
+  border-radius: 5px;
+}
+
+.reset:hover {
+  background-color: #E0E0E0;
+}
+
+.reset:active {
+  background-color: #BDBDBD;
+}
