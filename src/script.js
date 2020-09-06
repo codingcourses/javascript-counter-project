@@ -10,14 +10,21 @@ class Model {
 
   increment() {
     this.count++;
+    this.onChange(this.count);
   }
 
   decrement() {
     this.count--;
+    this.onChange(this.count);
   }
 
   reset() {
     this.count = 0;
+    this.onChange(this.count);
+  }
+
+  bindOnChange(callback) {
+    this.onChange = callback;
   }
 }
 
@@ -31,6 +38,7 @@ class View {
     this.count = this.getElement('#count');
     this.minus = this.getElement('#minus');
     this.plus = this.getElement('#plus');
+    this.reset = this.getElement('#reset');
   }
 
   getElement(selector) {
@@ -39,19 +47,25 @@ class View {
   }
 
   updateCount(count) {
-    this.count.value = count;
+    this.count.textContent = count;
   }
 
   bindIncrement(handler) {
-    this.plus.addEventListener('click', handler);
+    this.plus.addEventListener('click', () => {
+      handler();
+    });
   }
 
   bindDecrement(handler) {
-    this.minus.addEventListener('click', handler);
+    this.minus.addEventListener('click', () => {
+      handler();
+    });
   }
 
   bindReset(handler) {
-    this.reset.addEventListener('click', handler);
+    this.reset.addEventListener('click', () => {
+      handler();
+    });
   }
 }
 
@@ -67,17 +81,26 @@ class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+
+    this.model.bindOnChange(this.onCountChanged);
+    this.view.bindIncrement(this.handleIncrement);
+    this.view.bindDecrement(this.handleDecrement);
+    this.view.bindReset(this.handleReset);
   }
 
-  handleIncrement() {
+  onCountChanged = count => {
+    this.view.updateCount(count);
+  }
+
+  handleIncrement = () => {
     this.model.increment();
   }
 
-  handleDecrement() {
+  handleDecrement = () => {
     this.model.decrement();
   }
 
-  handleReset() {
+  handleReset = () => {
     this.model.reset();
   }
 }
