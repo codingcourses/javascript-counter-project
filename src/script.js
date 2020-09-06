@@ -52,6 +52,18 @@ class Controller {
     this.model = model;
     this.view = view;
   }
+
+  handleIncrement() {
+    this.model.increment();
+  }
+
+  handleDecrement() {
+    this.model.decrement();
+  }
+
+  handleReset() {
+    this.model.reset();
+  }
 }
 
 const app = new Controller(new Model(), new View());
