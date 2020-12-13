@@ -4,6 +4,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Inherit fonts for buttons */
@@ -12,10 +13,6 @@ button {
 }
 
 /* CUSTOM STYLES */
-#root {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 .container {
   position: absolute;
   top: 50%;
