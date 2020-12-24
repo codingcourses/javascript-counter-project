@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400');
+
 /* Set core body defaults */
 body {
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: linear-gradient(to bottom right, #9968db, #68abdb);
 }
 
 /* Inherit fonts for buttons */
@@ -12,70 +17,44 @@ button {
   font: inherit;
 }
 
-/* CUSTOM STYLES */
+/* Counter Project Styles */
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  user-select: none;
-}
-
-.center {
   display: flex;
-  align-items: center;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
-}
-
-.operator {
-  display: inline-block;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  padding-bottom: 5rem;
-  background-color: #29B6F6;
-  color: white;
-  border: none;
-  font-weight: 100;
-  font-size: 3rem;
-  border-radius: 50%;
-  height: 5rem;
-  width: 5rem;
-  outline: none;
-  cursor: pointer;
-  text-align: center;
-}
-
-.operator:hover {
-  background-color: #03A9F4;
-}
-
-.operator:active {
-  background-color: #039BE5;
+  align-items: center;
 }
 
 .count {
-  display: inline-block;
-  font-weight: 100;
+  text-align: center;
+  font-weight: 300;
   font-size: 10rem;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
-.reset {
-  background-color: #EEEEEE;
-  color: black;
+.btn {
+  font-weight: 400;
+  font-size: 1.25rem;
   border: none;
-  font-weight: 100;
-  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
   outline: none;
   cursor: pointer;
-  text-align: center;
-  padding: 0 1rem 0 1rem;
-  border-radius: 5px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #e4f0f9;
+  color: #666;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease 0s;
 }
 
-.reset:hover {
-  background-color: #E0E0E0;
+.btn:hover {
+  background-color: #cfe4f4;
 }
 
-.reset:active {
-  background-color: #BDBDBD;
+.btn:active {
+  background-color: #a5cdeb;
 }

@@ -15,6 +15,4 @@ These are specific topics covered in this project:
 - JavaScript on the web, DOM manipulation
 - HTML, CSS
 - MVC design pattern
-- Yarn
-- Minifying JavaScript and CSS
 - Publishing on GitHub Pages

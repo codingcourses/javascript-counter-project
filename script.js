@@ -1,112 +1,104 @@
-/**
- * @class Model
- *
- * Manages the data of the application.
- */
 class Model {
+  #data;
+  #onChange;
+
   constructor() {
-    this.count = Number(localStorage.getItem('count')) || 0;
+    this.#data = Number(localStorage.getItem(LOCAL_STORAGE_KEY)) || 0;
+    this.#onChange = () => {};
   }
 
   increment() {
-    this.count++;
-    this.onChange(this.count);
+    this.#data++;
+    this.save();
+    this.#onChange(this.#data);
   }
 
   decrement() {
-    this.count--;
-    this.onChange(this.count);
+    this.#data--;
+    this.save();
+    this.#onChange(this.#data);
   }
 
   reset() {
-    this.count = 0;
-    this.onChange(this.count);
+    this.#data = 0;
+    this.save();
+    this.#onChange(this.#data);
   }
 
-  bindOnChange(callback) {
-    this.onChange = callback;
+  save() {
+    localStorage.setItem(LOCAL_STORAGE_KEY, this.#data);
+  }
+
+  bindOnChange(handler) {
+    this.#onChange = handler;
+  }
+
+  initialize() {
+    this.#onChange(this.#data);
   }
 }
 
-/**
- * @class View
- *
- * Visual representation of the model.
- */
 class View {
+  #count;
+  #plus;
+  #minus;
+  #reset;
+
   constructor() {
-    this.count = this.getElement('#count');
-    this.minus = this.getElement('#minus');
-    this.plus = this.getElement('#plus');
-    this.reset = this.getElement('#reset');
+    this.#count = View.getElement('#count');
+    this.#plus = View.getElement('#plus');
+    this.#minus = View.getElement('#minus');
+    this.#reset = View.getElement('#reset');
   }
 
-  getElement(selector) {
-    const element = document.querySelector(selector);
-    return element;
-  }
-
-  updateCount(count) {
-    this.count.textContent = count;
+  static getElement(selector) {
+    const elem = document.querySelector(selector);
+    return elem;
   }
 
   bindIncrement(handler) {
-    this.plus.addEventListener('click', () => {
-      handler();
-    });
+    this.#plus.addEventListener('click', () => handler());
   }
 
   bindDecrement(handler) {
-    this.minus.addEventListener('click', () => {
-      handler();
-    });
+    this.#minus.addEventListener('click', () => handler());
   }
 
   bindReset(handler) {
-    this.reset.addEventListener('click', () => {
-      handler();
-    });
+    this.#reset.addEventListener('click', () => handler());
+  }
+
+  updateCount(count) {
+    this.#count.textContent = count;
   }
 }
 
-/**
- * @class Controller
- *
- * Links the model and the view.
- *
- * @param model
- * @param view
- */
 class Controller {
+  #model;
+  #view;
+
   constructor(model, view) {
-    this.model = model;
-    this.view = view;
+    this.#model = model;
+    this.#view = view;
 
-    this.model.bindOnChange(this.onCountChanged);
-    this.view.bindIncrement(this.handleIncrement);
-    this.view.bindDecrement(this.handleDecrement);
-    this.view.bindReset(this.handleReset);
+    this.#model.bindOnChange(this.onCountChange);
 
-    // Initial count
-    this.onCountChanged(this.model.count);
+    this.#view.bindIncrement(this.onIncrement);
+    this.#view.bindDecrement(this.onDecrement);
+    this.#view.bindReset(this.onReset);
+
+    this.#model.initialize();
   }
 
-  onCountChanged = count => {
-    localStorage.setItem('count', count);
-    this.view.updateCount(count);
-  }
+  onIncrement = () => this.#model.increment();
 
-  handleIncrement = () => {
-    this.model.increment();
-  }
+  onDecrement = () => this.#model.decrement();
 
-  handleDecrement = () => {
-    this.model.decrement();
-  }
+  onReset = () => this.#model.reset();
 
-  handleReset = () => {
-    this.model.reset();
-  }
+  onCountChange = count => this.#view.updateCount(count);
 }
 
-const app = new Controller(new Model(), new View());
+const LOCAL_STORAGE_KEY = 'CounterProject';
+
+const app = new Controller(new Model(), new View);
